@@ -1,0 +1,54 @@
+[2025-03-20 21:36:11,291] INFO main:191 - ------ Command line arguments -------
+[2025-03-20 21:36:11,291] INFO main:192 - step                                              : step04_retrieve_chunks
+[2025-03-20 21:36:11,291] INFO main:193 - input_filename                                    : None
+[2025-03-20 21:36:11,291] INFO main:194 - query_args                                        : Tell me about USA constitution
+[2025-03-20 21:36:11,291] INFO main:195 - use_rag                                           : False
+[2025-03-20 21:36:11,291] INFO main:196 - ------ Config Settings -------
+[2025-03-20 21:36:11,291] INFO main:198 - cleaned_text_directory                            : data/cleaned_text
+[2025-03-20 21:36:11,291] INFO main:198 - collection_name                                   : collections
+[2025-03-20 21:36:11,292] INFO main:198 - embedding_model_name                              : sentence-transformers/all-MiniLM-L6-v2
+[2025-03-20 21:36:11,292] INFO main:198 - embeddings_directory                              : data/embeddings
+[2025-03-20 21:36:11,292] INFO main:198 - llm_api_url                                       : http://localhost:1234/v1/completions
+[2025-03-20 21:36:11,292] INFO main:198 - llm_model_name                                    : llama-3.2-1b-instruct
+[2025-03-20 21:36:11,292] INFO main:198 - log_level                                         : debug
+[2025-03-20 21:36:11,292] INFO main:198 - raw_input_directory                               : data/raw_input
+[2025-03-20 21:36:11,292] INFO main:198 - retriever_min_score_threshold                     : 0.5
+[2025-03-20 21:36:11,292] INFO main:198 - vectordb_directory                                : data/vectordb
+[2025-03-20 21:36:11,292] INFO main:199 - ------------------------------
+[2025-03-20 21:36:11,292] INFO main:46 - Ensured directory exists: data/raw_input
+[2025-03-20 21:36:11,292] INFO main:46 - Ensured directory exists: data/cleaned_text
+[2025-03-20 21:36:11,292] INFO main:46 - Ensured directory exists: data/embeddings
+[2025-03-20 21:36:11,292] INFO main:46 - Ensured directory exists: data/vectordb
+[2025-03-20 21:36:11,292] INFO main:98 - [Step 04] Retrieval started.
+[2025-03-20 21:36:11,292] INFO main:100 - Query arguments: Tell me about USA constitution
+[2025-03-20 21:36:11,300] INFO posthog:22 - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[2025-03-20 21:36:11,479] INFO SentenceTransformer:210 - Use pytorch device_name: mps
+[2025-03-20 21:36:11,479] INFO SentenceTransformer:218 - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+[2025-03-20 21:36:13,219] INFO chromadb_retriever:23 - Initialized ChromaDBRetriever: embedding_model_name: sentence-transformers/all-MiniLM-L6-v2, collection_name: collections, score_threshold: 0.5
+[2025-03-20 21:36:13,548] WARNING local_persistent_hnsw:423 - Number of requested results 10 is greater than number of elements in index 4, updating n_results = 4
+[2025-03-20 21:36:13,560] INFO main:113 - Result 1:
+[2025-03-20 21:36:13,560] INFO main:114 - ID: A04 - Document4_cleaned.txt
+[2025-03-20 21:36:13,560] INFO main:115 - Score: 1.5748
+[2025-03-20 21:36:13,560] INFO main:118 - Document: 
+[2025-03-20 21:36:13,560] INFO main:119 - Context: title : the constitution of the united states summary : the united states constitution, ratified in 1787, is the foundational legal document of the u. s. government, establishing its framework, guiding principles, and separation of powers among its branches. it begins with the preamble, which articu
+[2025-03-20 21:36:13,560] INFO main:120 - --------------------------------------------------
+[2025-03-20 21:36:13,560] INFO main:113 - Result 2:
+[2025-03-20 21:36:13,560] INFO main:114 - ID: A04 - Document1_cleaned.txt
+[2025-03-20 21:36:13,560] INFO main:115 - Score: 2.7558
+[2025-03-20 21:36:13,560] INFO main:118 - Document: 
+[2025-03-20 21:36:13,560] INFO main:119 - Context: title : the 1945 constitution of the republic of indonesia ( unofficial translation ) summary : the 1945 constitution of the republic of indonesia serves as the fundamental legal document that establishes the framework for the country ' s governance, legal system, and national values. originally rat
+[2025-03-20 21:36:13,560] INFO main:120 - --------------------------------------------------
+[2025-03-20 21:36:13,560] INFO main:113 - Result 3:
+[2025-03-20 21:36:13,560] INFO main:114 - ID: A04 - Document2_cleaned.txt
+[2025-03-20 21:36:13,560] INFO main:115 - Score: 2.9468
+[2025-03-20 21:36:13,560] INFO main:118 - Document: 
+[2025-03-20 21:36:13,560] INFO main:119 - Context: title : norway ’ s constitution of 1814 ( revised 2015 ) summary : norway ’ s constitution of 1814, one of the oldest in the world still in operation, establishes the country as a limited and hereditary monarchy with a parliamentary system. it ensures democracy, rule of law, and human rights, while 
+[2025-03-20 21:36:13,560] INFO main:120 - --------------------------------------------------
+[2025-03-20 21:36:13,560] INFO main:113 - Result 4:
+[2025-03-20 21:36:13,560] INFO main:114 - ID: A04 - Document3_cleaned.txt
+[2025-03-20 21:36:13,560] INFO main:115 - Score: 3.2771
+[2025-03-20 21:36:13,560] INFO main:118 - Document: 
+[2025-03-20 21:36:13,560] INFO main:119 - Context: title : saudi arabia ’ s constitution of 1992 ( revised 2013 ) summary : saudi arabia ’ s basic law of governance, established in 1992 and revised in 2013, defines the country as a sovereign arab islamic state governed by islamic law ( shari ’ ah ), with the qur ’ an and sunnah as its constitution. 
+[2025-03-20 21:36:13,560] INFO main:120 - --------------------------------------------------
+[2025-03-20 21:36:13,560] INFO main:125 - [Step 04] Retrieval completed.
+[2025-03-20 21:36:13,560] INFO main:212 - RAG pipeline done

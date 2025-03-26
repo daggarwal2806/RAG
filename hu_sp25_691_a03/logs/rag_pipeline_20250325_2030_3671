@@ -1,0 +1,33 @@
+[2025-03-25 20:30:36,716] INFO main:194 - ------ Command line arguments -------
+[2025-03-25 20:30:36,716] INFO main:195 - step                                              : step01_ingest
+[2025-03-25 20:30:36,716] INFO main:196 - input_filename                                    : all
+[2025-03-25 20:30:36,716] INFO main:197 - query_args                                        : None
+[2025-03-25 20:30:36,716] INFO main:198 - use_rag                                           : False
+[2025-03-25 20:30:36,716] INFO main:199 - ------ Config Settings -------
+[2025-03-25 20:30:36,716] INFO main:201 - cleaned_text_directory                            : data/cleaned_text
+[2025-03-25 20:30:36,716] INFO main:201 - collection_name                                   : collections
+[2025-03-25 20:30:36,716] INFO main:201 - embedding_model_name                              : sentence-transformers/all-MiniLM-L6-v2
+[2025-03-25 20:30:36,716] INFO main:201 - embeddings_directory                              : data/embeddings
+[2025-03-25 20:30:36,716] INFO main:201 - llm_api_url                                       : http://localhost:1234/v1/completions
+[2025-03-25 20:30:36,716] INFO main:201 - llm_model_name                                    : llama-3.2-1b-instruct
+[2025-03-25 20:30:36,716] INFO main:201 - log_level                                         : debug
+[2025-03-25 20:30:36,716] INFO main:201 - raw_input_directory                               : data/raw_input
+[2025-03-25 20:30:36,716] INFO main:201 - retriever_min_score_threshold                     : 0.5
+[2025-03-25 20:30:36,716] INFO main:201 - vectordb_directory                                : data/vectordb
+[2025-03-25 20:30:36,716] INFO main:202 - ------------------------------
+[2025-03-25 20:30:36,716] INFO main:46 - Ensured directory exists: data/raw_input
+[2025-03-25 20:30:36,716] INFO main:46 - Ensured directory exists: data/cleaned_text
+[2025-03-25 20:30:36,717] INFO main:46 - Ensured directory exists: data/embeddings
+[2025-03-25 20:30:36,717] INFO main:46 - Ensured directory exists: data/vectordb
+[2025-03-25 20:30:36,717] INFO main:51 - [Step 01] Document ingestion started.
+[2025-03-25 20:30:36,940] INFO document_ingestor:27 - Initialized DocumentIngestor: input_dir: data/raw_inputoutput_dir: data/cleaned_text, embedding_model_name: sentence-transformers/all-MiniLM-L6-v2
+[2025-03-25 20:30:36,940] INFO document_ingestor:69 - Processing file: data/raw_input/A04 - Document4.pdf
+[2025-03-25 20:30:37,014] INFO document_ingestor:84 - Saved cleaned text to data/cleaned_text/A04 - Document4_cleaned.txt
+[2025-03-25 20:30:37,016] INFO document_ingestor:69 - Processing file: data/raw_input/A04 - Document1.pdf
+[2025-03-25 20:30:37,063] INFO document_ingestor:84 - Saved cleaned text to data/cleaned_text/A04 - Document1_cleaned.txt
+[2025-03-25 20:30:37,064] INFO document_ingestor:69 - Processing file: data/raw_input/A04 - Document3.pdf
+[2025-03-25 20:30:37,126] INFO document_ingestor:84 - Saved cleaned text to data/cleaned_text/A04 - Document3_cleaned.txt
+[2025-03-25 20:30:37,126] INFO document_ingestor:69 - Processing file: data/raw_input/A04 - Document2.pdf
+[2025-03-25 20:30:37,171] INFO document_ingestor:84 - Saved cleaned text to data/cleaned_text/A04 - Document2_cleaned.txt
+[2025-03-25 20:30:37,171] INFO main:60 - [Step 01] Document ingestion completed.
+[2025-03-25 20:30:37,174] INFO main:215 - RAG pipeline done

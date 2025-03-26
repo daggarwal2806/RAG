@@ -1,0 +1,36 @@
+[2025-03-25 20:27:13,927] INFO main:194 - ------ Command line arguments -------
+[2025-03-25 20:27:13,927] INFO main:195 - step                                              : step03_store_vectors
+[2025-03-25 20:27:13,927] INFO main:196 - input_filename                                    : all
+[2025-03-25 20:27:13,927] INFO main:197 - query_args                                        : None
+[2025-03-25 20:27:13,927] INFO main:198 - use_rag                                           : False
+[2025-03-25 20:27:13,928] INFO main:199 - ------ Config Settings -------
+[2025-03-25 20:27:13,928] INFO main:201 - cleaned_text_directory                            : data/cleaned_text
+[2025-03-25 20:27:13,928] INFO main:201 - collection_name                                   : collections
+[2025-03-25 20:27:13,928] INFO main:201 - embedding_model_name                              : sentence-transformers/all-MiniLM-L6-v2
+[2025-03-25 20:27:13,928] INFO main:201 - embeddings_directory                              : data/embeddings
+[2025-03-25 20:27:13,928] INFO main:201 - llm_api_url                                       : http://localhost:1234/v1/completions
+[2025-03-25 20:27:13,928] INFO main:201 - llm_model_name                                    : llama-3.2-1b-instruct
+[2025-03-25 20:27:13,928] INFO main:201 - log_level                                         : debug
+[2025-03-25 20:27:13,928] INFO main:201 - raw_input_directory                               : data/raw_input
+[2025-03-25 20:27:13,928] INFO main:201 - retriever_min_score_threshold                     : 0.5
+[2025-03-25 20:27:13,928] INFO main:201 - vectordb_directory                                : data/vectordb
+[2025-03-25 20:27:13,928] INFO main:202 - ------------------------------
+[2025-03-25 20:27:13,928] INFO main:46 - Ensured directory exists: data/raw_input
+[2025-03-25 20:27:13,928] INFO main:46 - Ensured directory exists: data/cleaned_text
+[2025-03-25 20:27:13,928] INFO main:46 - Ensured directory exists: data/embeddings
+[2025-03-25 20:27:13,928] INFO main:46 - Ensured directory exists: data/vectordb
+[2025-03-25 20:27:13,928] INFO main:78 - [Step 03] Vector storage started.
+[2025-03-25 20:27:13,928] INFO main:82 - deleting existing vectordb
+[2025-03-25 20:27:13,932] INFO utilities:10 - Directory 'data/vectordb'  deleted.
+[2025-03-25 20:27:13,943] INFO posthog:22 - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[2025-03-25 20:27:14,162] WARNING embedding_loader:64 - Missing embedding file for .DS_Store, skipping.
+[2025-03-25 20:27:14,162] INFO embedding_loader:74 - Storing A04 - Document3_cleaned.txt in ChromaDB...
+[2025-03-25 20:27:14,171] INFO embedding_loader:82 - Stored A04 - Document3_cleaned.txt successfully.
+[2025-03-25 20:27:14,172] INFO embedding_loader:74 - Storing A04 - Document2_cleaned.txt in ChromaDB...
+[2025-03-25 20:27:14,174] INFO embedding_loader:82 - Stored A04 - Document2_cleaned.txt successfully.
+[2025-03-25 20:27:14,174] INFO embedding_loader:74 - Storing A04 - Document4_cleaned.txt in ChromaDB...
+[2025-03-25 20:27:14,176] INFO embedding_loader:82 - Stored A04 - Document4_cleaned.txt successfully.
+[2025-03-25 20:27:14,176] INFO embedding_loader:74 - Storing A04 - Document1_cleaned.txt in ChromaDB...
+[2025-03-25 20:27:14,177] INFO embedding_loader:82 - Stored A04 - Document1_cleaned.txt successfully.
+[2025-03-25 20:27:14,177] INFO main:93 - [Step 03] Vector storage completed.
+[2025-03-25 20:27:14,177] INFO main:215 - RAG pipeline done

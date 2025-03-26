@@ -1,0 +1,35 @@
+[2025-03-25 21:08:09,021] INFO main:204 - ------ Command line arguments -------
+[2025-03-25 21:08:09,021] INFO main:205 - step                                              : step04_retrieve_chunks
+[2025-03-25 21:08:09,021] INFO main:206 - input_filename                                    : all
+[2025-03-25 21:08:09,021] INFO main:207 - query_args                                        : Tell me about the constitutions of Norway
+[2025-03-25 21:08:09,021] INFO main:208 - use_rag                                           : False
+[2025-03-25 21:08:09,021] INFO main:209 - ------ Config Settings -------
+[2025-03-25 21:08:09,021] INFO main:211 - cleaned_text_directory                            : data/cleaned_text
+[2025-03-25 21:08:09,021] INFO main:211 - collection_name                                   : collections
+[2025-03-25 21:08:09,021] INFO main:211 - embedding_model_name                              : sentence-transformers/all-MiniLM-L6-v2
+[2025-03-25 21:08:09,021] INFO main:211 - embeddings_directory                              : data/embeddings
+[2025-03-25 21:08:09,021] INFO main:211 - llm_api_url                                       : http://localhost:1234/v1/completions
+[2025-03-25 21:08:09,021] INFO main:211 - llm_model_name                                    : llama-3.2-1b-instruct
+[2025-03-25 21:08:09,021] INFO main:211 - log_level                                         : debug
+[2025-03-25 21:08:09,021] INFO main:211 - raw_input_directory                               : data/raw_input
+[2025-03-25 21:08:09,021] INFO main:211 - retriever_min_score_threshold                     : 0.5
+[2025-03-25 21:08:09,021] INFO main:211 - vectordb_directory                                : data/vectordb
+[2025-03-25 21:08:09,021] INFO main:212 - ------------------------------
+[2025-03-25 21:08:09,021] INFO main:45 - Ensured directory exists: data/raw_input
+[2025-03-25 21:08:09,021] INFO main:45 - Ensured directory exists: data/cleaned_text
+[2025-03-25 21:08:09,021] INFO main:45 - Ensured directory exists: data/embeddings
+[2025-03-25 21:08:09,021] INFO main:45 - Ensured directory exists: data/vectordb
+[2025-03-25 21:08:09,021] INFO main:104 - [Step 04] Retrieval started.
+[2025-03-25 21:08:09,021] INFO main:106 - Query arguments: Tell me about the constitutions of Norway
+[2025-03-25 21:08:09,029] INFO posthog:22 - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[2025-03-25 21:08:09,163] INFO SentenceTransformer:210 - Use pytorch device_name: mps
+[2025-03-25 21:08:09,163] INFO SentenceTransformer:218 - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+[2025-03-25 21:08:10,118] INFO chromadb_retriever:22 - Initialized ChromaDBRetriever: embedding_model_name: sentence-transformers/all-MiniLM-L6-v2, collection_name: collections, score_threshold: 0.5
+[2025-03-25 21:08:10,452] INFO main:121 - Result 1:
+[2025-03-25 21:08:10,452] INFO main:127 - ID: Norway_cleaned.txt
+[2025-03-25 21:08:10,452] INFO main:128 - Score: 1.8619
+[2025-03-25 21:08:10,452] INFO main:129 - Document: 
+[2025-03-25 21:08:10,452] INFO main:130 - Context: title : norway ’ s constitution of 1814 ( revised 2015 ) summary : norway ’ s constitution of 1814, one of the oldest in the world still in operation, establishes the country as a limited and hereditary monarchy with a parliamentary system. it ensures democracy, rule of law, and human rights, while maintaining a strong connection to its christian and humanistic heritage. the executive power resides with the king, who appoints a council of state, including the prime minister, to oversee governance. while the monarchy is symbolic, political power is largely exercised by elected representatives. the legislative power is vested in the storting ( parliament ), which is elected through free and secret ballots every four years. the storting holds authority to enact laws, levy taxes, approve treaties, and oversee government functions. the constitution mandates a proportional representation electoral system and outlines clear procedures for constitutional amendments, requiring broad legislative consensus. the judiciary operates independently, with the supreme court holding final authority in legal matters, including constitutional review. a strong emphasis is placed on human rights, including freedom of expression, religion, assembly, and movement. the constitution prohibits capital punishment, torture, and slavery, guarantees equal treatment before the law, and secures rights to education, work, and environmental protection. special provisions acknowledge and protect the sami people ’ s cultural and linguistic rights. norway also recognizes international human rights obligations, aligning domestic laws with treaties. the constitution further addresses state security, military service obligations, and norway ’ s ability to delegate powers to international organizations, ensuring its role in global governance. the process for amending the constitution requires multiple stages of legislative approval, ensuring stability while allowing for gradual reform. overall, this document defines norway as a modern constitutional democracy, balancing monarchical tradition with democratic principles and strong human rights protections.
+[2025-03-25 21:08:10,452] INFO main:131 - --------------------------------------------------
+[2025-03-25 21:08:10,452] INFO main:133 - [Step 04] Retrieval completed.
+[2025-03-25 21:08:10,452] INFO main:225 - RAG pipeline done
