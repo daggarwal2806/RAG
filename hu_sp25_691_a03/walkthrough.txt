@@ -1,3 +1,0 @@
-# Only one document per country
-# No non-documented countries
-# Typos - future enhancement
