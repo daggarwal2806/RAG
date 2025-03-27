@@ -1,0 +1,132 @@
+Domain selection-
+- We were looking at a larger Domain for ex - AWS, Finance, Food recipes
+- AWS was a very huge domain and if we had chosen S3, it included codes and policies which was tough to infer
+- Finance also had good datasets - FRED and FOMC but too huge of a domain
+- considered board games as well but manuals had images and we wanted textual data only
+- shorten it down to Constitutions
+- initially decided to do US constitution and everything about it but not sufficient data was there
+- we also considered a constitutional law research assistant but then the case files were 150 pages long and were difficult to be summarized
+- Decided on comparison, summary and explanation of constitutions of multiple countries
+- started with 5 countries with smaller constitutions - Norway, Monaco, Saudi Arabia, US, Indonesia
+- selected few countries (picked 10) - added 5 more - Japan, India, Vietnam, Bahamas, Thailand
+
+Documents-
+- We decided to add 1 document per country i.e., the summary of the constitution of that country - obtained by chatgpt
+- The prompt we sent to chatgpt was "Summarize the constitution that has been uploaded to this prompt. For your response, please provide key aspects 
+of the document along with amendments to the original document. Provide your response in one long paragraph and do not use any information outside the information provided in this prompt"
+
+Code-
+- Started with the sample code
+- Just added the raw documents
+- Initially, the only major change we did was in ChromaDBRetriever where for comparison of 2 countries we had to choose 2 documents (1 per country)
+and the existing code was retrieving the document with the best score only.
+- We also merged the contexts retrieved from different documents
+- Played around with top_k - finally kept it maximum (10, based on the countries we're considering for now, since its a small number only, and helped us research the different similarity scores)
+
+
+    - ChromaDBRetriever changes
+        - We wanted to get exact documents from the list based on the query
+        - How many documents we should pick based on user inut query - could be any number
+        - Tried ways to fetch countries from the query to make sure we're retrieving the documents of those countries only, even if not the correct number of documents (considering we had multiple documents for each country)
+        - We tried, pycountry library, then also tried getting all the names for each country for ex (ambiguity situation of United States, US, USA)
+        - We also thought of using AI to fetch the countries from the query
+            - that would have solved the problem of someone entering a country's name in the query for whcih we dont have the context (missing countries)
+            - but all this was for a larger scope of domain
+        - we felt we were kind of cheating the retrieval algorithm by explicitly looking for the country names in the documents and that would've defeated the purpose of ChromaDB vector-based retrieval algorithm
+        - We thought of using statistical methods to get the documents which have lowest scores in a range but the range and scores were dynamic so we couldnt just hardcode it
+        - Also, the number of countries were variable for which we wanted to retrieve the documents, the choice of tatistical method was very important
+        - We tried Standard Deviation and it seemed a good approach and gave us almost the results we wanted
+
+        - Instead of truncating the context, since were making sure that we were fetching the correct documents for the countries, we just picked the full context so that no information is lost
+
+
+    - RagQueryProcessor
+        - Query iterations
+        - For making a better query, we used multiple things
+            - langchain (openAI)
+                - was paid so couldnt finally implement it even though added code for it and tried to debug a lot
+            - gemini AI
+                - it was getting complicated, the gemini models keep on changing and we werent able to get the exact model for our use-case and no docs were available
+                - and again we felt that were cheating the query generation process by using AI and doing less human intervention
+
+
+    - Logging and Catching Errors
+        - Added logging and error-catching everywhere where it was not implemented
+
+
+    - Testing framework
+        - Added unit tests for each class, integration test and performance test
+        - Performance test had some bumps, with timeit library where it errored that chromadb was only a read-only database and couldnt write to it
+            - Made changes to Embedding Loader to make it work but eventually changed the implementation
+                - Adding permissions to vectordb directory and chromadb.sqlite for performance testing (deprecated)
+
+
+Running-
+- Had the first basic run and the output was bad
+For the query - "Compare the constitutions of United States and Norway." we also got results for 'Canada' when there was no mention of it. (for --use_rag)
+- Query iterations:
+
+    -  f"""
+        # You are an AI assistant answering user queries using retrieved context.
+        # If the context is insufficient, say 'I don't know'. 
+
+        # Context:
+        # {context if context else "No relevant context found."}
+
+        # Question:
+        # {query_text}
+
+    - f"Context:\n{context}\n\n"
+        f"User Query:\n{query_text}\n\n"
+        f"Please provide a detailed comparison in one long paragraph, using only the provided context and without using any outside material."
+    
+    - f"Please answer the following user query based strictly on the provided constitutional context. "
+        f"Do not rely on external knowledge, assumptions, or unsupported information. "
+        f"Your response should be a concise single-paragraph, no longer than 200 words. "
+        f"Ensure that the response is clear, concise, and directly addresses the query. "
+        f"Avoid any repetition or redundant information. Focus on providing a unique and comprehensive answer.\n\n"
+        f"Context:\n{context}\n\n"
+        f"User Query:\n{query_text}\n\n"
+        f"Response:"
+
+    - With each query iteration, the response kept on improving but still not certain that every time the response will be good.
+
+- After the final query and model selection, the response with RAG is more concise, to-the-point and correct compared to the one without RAG.
+
+- Sometimes its hard to predict getting a good response due to LLM hallucinations (using outside untrained LLM for final response generation).
+
+
+Important decisions for best retrieval-
+1. Duplicated the search query (searchQuery+searchQuery) before creating embeddings for the search query
+2. Standard deviation statistical method to select closest documents based on the similarity score
+2. Embedding Model Choice (sentence-transformers/all-mpnet-base-v2)
+
+Research behind embedding model selection - 
+all models are part of the Sentence-Transformers library, which provides pre-trained models for generating sentence embeddings. These models are designed to capture the semantic meaning of sentences and are commonly used for tasks like semantic search, clustering, and classification.
+
+Differences Between the Models
+
+MPNet: MPNet (Masked and Permuted Network) is a transformer-based model that combines the strengths of BERT and XLNet. It is known for its strong performance on various NLP tasks.
+MiniLM: MiniLM (Miniature Language Model) is a smaller and faster transformer model designed to provide competitive performance with reduced computational requirements.
+Training Objective:
+
+Paraphrase: Models with "paraphrase" in their name are fine-tuned on paraphrase datasets. They are optimized to capture the semantic similarity between sentences that have the same meaning but are phrased differently.
+All: Models with "all" in their name are fine-tuned on a broader range of datasets, including paraphrase, NLI (Natural Language Inference), and STS (Semantic Textual Similarity). They are designed to be more versatile and perform well across various tasks.
+Model Size and Speed:
+
+MPNet: Generally larger and more powerful, providing higher accuracy but requiring more computational resources.
+MiniLM: Smaller and faster, offering a good trade-off between performance and efficiency.
+
+MPNet vs. MiniLM: MPNet models are larger and more powerful, while MiniLM models are smaller and faster.
+Paraphrase vs. All: Paraphrase models are fine-tuned on paraphrase datasets, while All models are fine-tuned on a broader range of datasets.
+Choosing the Right Model: Consider your requirements for accuracy, performance, and efficiency when choosing a model.
+By understanding the differences between these models, you can select the one that best fits your needs for generating high-quality sentence embeddings.
+
+
+- Future improvements
+    - Consider any and all countries and their aliases
+    - Use AI wherever possible if RAG theoretically allows that
+    - Fine tune embedding model based on the domain
+    - Having multiple documents per country for in-depth understanding of its constitution
+    - Better query generator using OpenAI's paid langchain_community libraries
+    - 
