@@ -30,8 +30,7 @@ This repository contains the implementation of a Retrieval-Augmented Generation 
 │   ├── chromadb_retriever.py    # Retrieves relevant contexts
 │   ├── rag_query_processor.py   # Augments LLM responses
 │   ├── llm_client.py            # Interacts with the LLM API
-├── tests/
-│   ├── test_all.py              # Unit and integration tests
+├── tests/                  # Unit, integration and performance tests
 ├── config.json                  # Configuration file
 ├── main.py                      # Main entry point for running the pipeline
 └── README.md                    # Project documentation
