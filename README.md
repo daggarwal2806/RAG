@@ -23,9 +23,7 @@ This repository contains the implementation of a Retrieval-Augmented Generation 
 ```
 ├── data/
 │   ├── raw_input/          # Raw constitutional documents
-│   ├── cleaned_text/       # Preprocessed text chunks
-│   ├── embeddings/         # Generated embeddings
-│   ├── vectordb/           # Vector database files
+│   ├── test/               # Test data for unit tests
 ├── classes/
 │   ├── document_ingestor.py     # Handles document ingestion
 │   ├── embedding_preparer.py    # Generates embeddings
